@@ -3,6 +3,7 @@ package controllers;
 import dao.UserDaoImpl;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
+import models.User;
 import service.RegistrationService;
 
 import javax.servlet.RequestDispatcher;
@@ -11,9 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.Writer;
+
 
 @WebServlet(name = "RegistrationServlet", urlPatterns = "/reg")
 public class RegistrationServlet extends HttpServlet {
@@ -40,10 +41,16 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html;charset=UTF-8");
-        String path = "/example.ftl";
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
-        requestDispatcher.forward(req, resp);
+        HttpSession session = req.getSession();
+        User user = (User)session.getAttribute("user");
+        if(user != null) {
+            resp.sendRedirect("profile");
+        } else {
+            resp.setContentType("text/html;charset=UTF-8");
+            String path = "/example.ftl";
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
+            requestDispatcher.forward(req, resp);
+        }
 
     }
 
