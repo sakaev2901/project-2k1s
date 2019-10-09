@@ -3,21 +3,31 @@ package models;
 public class User {
     private Integer id;
     private String firstName;
-    private String lastName;
+    private String surName;
     private String mail;
-    private String number;
+    private String phone;
     private String password;
     private Boolean isPremium;
     private String login;
+    private String birthday;
 
-    public User(String firstName, String lastName, String mail, String number, String password, String login) {
+    public Boolean getPremium() {
+        return isPremium;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public User(String firstName, String surName, String birthday, String mail, String phone, String password, String login) {
         this.firstName = firstName;
-        this.lastName = lastName;
+        this.surName = surName;
         this.mail = mail;
-        this.number = number;
+        this.phone = phone;
         this.password = password;
         this.isPremium = false;
         this.login = login;
+        this.birthday = birthday;
     }
 
     public String getLogin() {
@@ -52,12 +62,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurName() {
+        return surName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurName(String surName) {
+        this.surName = surName;
     }
 
     public String getMail() {
@@ -68,12 +78,12 @@ public class User {
         this.mail = mail;
     }
 
-    public String getNumber() {
-        return number;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
