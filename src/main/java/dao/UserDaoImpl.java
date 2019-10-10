@@ -15,7 +15,8 @@ public class UserDaoImpl implements UserDao {
     private static final String DELETE = "DELETE FROM user WHERE id=?";
     private static final String FIND_ALL = "SELECT * FROM user ORDER BY id";
     private static final String FIND_BY_ID = "SELECT * FROM user WHERE id=?";
-    private static final String FIND_BY_NAME = "SELECT * FROM user WHERE name=?";
+    private static final String FIND_BY_LOGIN = "SELECT * FROM public.user WHERE \"login\"=?";
+
     private static final String INSERT = "INSERT INTO public.user (login, firstname, surname, birthday, mail, phone, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
 //    private static final String UPDATE = "UPDATE user SET name=?, tel=?, passwd=? WHERE id=?";
 
@@ -52,6 +53,36 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User find(int id) {
         return null;
+    }
+
+    public User findByLogin(String login) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement(FIND_BY_LOGIN);
+            statement.setString(1, login);
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                User user = new User();
+                user.setLogin(set.getString("login"));
+                user.setFirstName(set.getString("firstname"));
+                user.setSurName(set.getString("surname"));
+                user.setBirthday(set.getString("birthday"));
+                user.setMail(set.getString("mail"));
+                user.setPhone(set.getString("phone"));
+                user.setPassword(set.getString("password"));
+
+                return user;
+            } else {
+                return null;
+            }
+        } catch (SQLException e ) {
+            throw new RuntimeException(e);
+        } finally {
+            close(connection);
+            close(statement);
+        }
     }
 
     @Override

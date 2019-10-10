@@ -11,8 +11,23 @@ public class User {
     private String login;
     private String birthday;
 
+    public User() {
+    }
+
     public Boolean getPremium() {
         return isPremium;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPremium(Boolean premium) {
+        isPremium = premium;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getBirthday() {
