@@ -7,10 +7,7 @@ import java.util.List;
 
 public class UserDaoImpl implements UserDao {
 
-    private static final String DRIVER_NAME = "org.postgresql.Driver";
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/project2k1s";
-    private static final String ID = "postgres";
-    private static final String PASS = "elvin2901";
+    public static final ConnectionConfig CONFIG = new ConnectionConfig();
 
     private static final String DELETE = "DELETE FROM user WHERE id=?";
     private static final String FIND_ALL = "SELECT * FROM user ORDER BY id";
@@ -25,8 +22,8 @@ public class UserDaoImpl implements UserDao {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = getConnection();
-            statement = connection.prepareStatement(INSERT);
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, model.getLogin());
             statement.setString(2, model.getFirstName());
             statement.setString(3, model.getSurName());
@@ -35,13 +32,16 @@ public class UserDaoImpl implements UserDao {
             statement.setString(6, model.getPhone());
             statement.setString(7, model.getPassword());
             int result = statement.executeUpdate();
-            //TODO: obtain generated keys
+            ResultSet resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                model.setId(resultSet.getInt(1));
+            }
             return result;
         } catch (SQLException e) {
             throw new  RuntimeException(e);
         } finally {
-            close(connection);
-            close(statement);
+            CONFIG.close(connection);
+            CONFIG.close(statement);
         }
     }
 
@@ -59,7 +59,7 @@ public class UserDaoImpl implements UserDao {
         Connection connection = null;
         PreparedStatement statement = null;
         try {
-            connection = getConnection();
+            connection = CONFIG.getConnection();
             statement = connection.prepareStatement(FIND_BY_LOGIN);
             statement.setString(1, login);
             ResultSet set = statement.executeQuery();
@@ -72,6 +72,7 @@ public class UserDaoImpl implements UserDao {
                 user.setMail(set.getString("mail"));
                 user.setPhone(set.getString("phone"));
                 user.setPassword(set.getString("password"));
+                user.setId(set.getInt("id"));
 
                 return user;
             } else {
@@ -80,8 +81,8 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e ) {
             throw new RuntimeException(e);
         } finally {
-            close(connection);
-            close(statement);
+            CONFIG.close(connection);
+            CONFIG.close(statement);
         }
     }
 
@@ -95,23 +96,6 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
-    private static Connection getConnection() {
-        try {
-            Class.forName(DRIVER_NAME);
-            return DriverManager.getConnection(DB_URL, ID, PASS);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    private static void close(AutoCloseable statement) {
-        if (statement != null) {
-            try {
-                statement.close();
-            }
-                catch (Exception e) {
-                    throw  new RuntimeException(e);
-            }
-        }
-    }
+
 }
