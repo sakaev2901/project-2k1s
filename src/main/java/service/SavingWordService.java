@@ -9,7 +9,7 @@ public class SavingWordService {
         WordDaoImpl wordDao = new WordDaoImpl();
         for (Word word:
              dictionary.getDictionary()) {
-            wordDao.save(word);
+            wordDao.save(word, dictionary.getId());
         }
         System.out.println(dictionary);
     }

@@ -37,7 +37,7 @@ public class ParseFileServlet extends HttpServlet {
 //        String fileName = getSubmittedFileName(filePart);
         InputStream fileContent = filePart.getInputStream();
         String dictionaryName = req.getParameter("name");
-        Dictionary dictionary = dictionaryService.parseFile(" - ", fileContent, dictionaryName);
+        Dictionary dictionary = dictionaryService.parseFile(" - ", fileContent, dictionaryName, req.getSession());
         savingWordService.saveDictionaryAsWords(dictionary);
         req.setCharacterEncoding("UTF-8");
         req.getRequestDispatcher("/parseResult.ftl").forward(req, resp);
