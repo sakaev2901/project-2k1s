@@ -19,6 +19,7 @@ public class ProfileServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         if (user != null) {
             req.setAttribute("user", user.getLogin());
+            req.setAttribute("id", String.valueOf(user.getId()));
             req.getRequestDispatcher("/profile.ftl").forward(req, resp);
         } else {
             resp.sendRedirect("login");

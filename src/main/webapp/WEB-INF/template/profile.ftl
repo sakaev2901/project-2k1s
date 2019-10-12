@@ -6,6 +6,7 @@
 </head>
 <body>
     <p>${user}</p>
+    <p>${id}</p>
     <form action="logout">
         <input type="submit" value="Выйти">
     </form>

@@ -1,7 +1,9 @@
 package controllers;
 
 import models.Dictionary;
+import models.Word;
 import service.DictionaryService;
+import service.SavingWordService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,6 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.LinkedList;
 import java.util.Map;
 
 @MultipartConfig
@@ -28,15 +31,15 @@ public class ParseFileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DictionaryService service = new DictionaryService();
+        DictionaryService dictionaryService = new DictionaryService();
+        SavingWordService savingWordService = new SavingWordService();
         Part filePart = req.getPart("file");
-        String fileName = getSubmittedFileName(filePart);
+//        String fileName = getSubmittedFileName(filePart);
         InputStream fileContent = filePart.getInputStream();
         String dictionaryName = req.getParameter("name");
-        Map<String, String> map = service.parseFile(" - ", fileContent, dictionaryName);
+        Dictionary dictionary = dictionaryService.parseFile(" - ", fileContent, dictionaryName);
+        savingWordService.saveDictionaryAsWords(dictionary);
         req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("windows-1251");
-        req.setAttribute("word", map.get("approximately"));
         req.getRequestDispatcher("/parseResult.ftl").forward(req, resp);
     }
 

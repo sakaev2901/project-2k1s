@@ -1,17 +1,19 @@
 package service;
 
+import dao.DictionaryDaoImpl;
 import models.Dictionary;
 import models.Word;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class DictionaryService {
 
     public Dictionary dictionary;
 
-    public Map parseFile(String separator, InputStream inputStream, String name) {
+    public Dictionary parseFile(String separator, InputStream inputStream, String name) {
         try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 
             String line;
@@ -24,10 +26,16 @@ public class DictionaryService {
                 translation = new String(line.split(" - ")[1].getBytes(), StandardCharsets.UTF_8);
                 dictionary.addWord(new Word(word, translation));
             }
-            return dictionary.getDictionary();
+            sendToDB();
+            return this.dictionary;
         } catch (IOException e) {
             throw new RuntimeException(e);
 
         }
+    }
+
+    public void sendToDB() {
+        DictionaryDaoImpl dictionaryDao = new DictionaryDaoImpl();
+        dictionaryDao.save(this.dictionary);
     }
 }

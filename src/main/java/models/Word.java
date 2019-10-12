@@ -1,6 +1,8 @@
 package models;
 
 public class Word {
+    private int id;
+    private int correctAnswers;
     private String word;
     private String translation;
 
@@ -27,5 +29,21 @@ public class Word {
 
     public void setTranslation(String translation) {
         this.translation = translation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCorrectAnswers() {
+        return correctAnswers;
+    }
+
+    public void setCorrectAnswers(int correctAnswers) {
+        this.correctAnswers = correctAnswers;
     }
 }
