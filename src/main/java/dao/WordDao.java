@@ -5,6 +5,9 @@ import models.Word;
 import java.util.List;
 
 public interface WordDao extends BaseDao<Word> {
+
+    int save(Word model, Integer id);
+
     @Override
     int save(Word model);
 
