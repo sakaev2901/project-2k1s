@@ -13,6 +13,9 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
     public static final String INSERT = "INSERT INTO public.dictionary (name) VALUES(?)";
     public static final String INSERT_LINKING = "INSERT INTO public.user_dictionary (id_user, id_dictionary) VALUES(?, ?)";
+    public static final String FIND = "SELECT * FROM dictionary WHERE \"id\"=?";
+
+
 
     @Override
     public int save(Dictionary model) {
@@ -52,7 +55,30 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
     @Override
     public Dictionary find(int id) {
-        return null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        DictionaryWordDaoImpl dictionaryWordDao = new DictionaryWordDaoImpl();
+        try {
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(FIND);
+            statement.setInt(1, id);
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                Dictionary dictionary = new Dictionary();
+                dictionary.setId(id);
+                dictionary.setName(set.getString("name"));
+                dictionary.setDictionary(dictionaryWordDao.find(id));
+                return dictionary;
+            } else  {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw  new  RuntimeException(e);
+        }
+        finally {
+            CONFIG.close(statement);
+            CONFIG.close(connection);
+        }
     }
 
     @Override
@@ -65,14 +91,4 @@ public class DictionaryDaoImpl implements DictionaryDao {
         return null;
     }
 
-    @Override
-    public void linkWithUser(Dictionary model) {
-//        Connection connection = null;
-//        PreparedStatement statement = null;
-//        try {
-//            connection = CONFIG.getConnection();
-//            statement = connection.prepareStatement(INSERT_LINKING);
-//            statement.setInt(1, );
-//        }
-    }
 }

@@ -1,7 +1,7 @@
 package models;
 
 public class Word {
-    private int id;
+    private Integer id;
     private int correctAnswers;
     private String word;
     private String translation;
@@ -31,11 +31,11 @@ public class Word {
         this.translation = translation;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

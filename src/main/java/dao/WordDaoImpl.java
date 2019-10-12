@@ -11,7 +11,8 @@ public class WordDaoImpl implements WordDao {
     public static final String INSERT_LINKING = "INSERT INTO public.dictionary_word (id_dictionary, id_word) VALUES(?, ?);";
     public static final ConnectionConfig CONFIG = new ConnectionConfig();
 
-    public static final String INSERT = "INSERT INTO public.word (word, translation) VALUES(?, ?);";
+    public static final String INSERT = "INSERT INTO public.word (word, translation, correct_answers) VALUES(?, ?, ?);";
+    public static final String FIND = "SELECT * FROM word WHERE \"id\"=?";
 
     @Override
     public int save(Word model) {
@@ -35,6 +36,7 @@ public class WordDaoImpl implements WordDao {
             PreparedStatement statementLinking = connection.prepareStatement(INSERT_LINKING);
             statementLinking.setInt(1, id);
             statementLinking.setInt(2, model.getId());
+            statement.setInt(3, 0);
             statementLinking.executeUpdate();
 
             return result;
@@ -53,7 +55,27 @@ public class WordDaoImpl implements WordDao {
 
     @Override
     public Word find(int id) {
-        return null;
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(FIND);
+            statement.setInt(1, id);
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                Word word = new Word();
+                word.setId(id);
+                word.setWord(set.getString("word"));
+                word.setTranslation(set.getString("translation"));
+                word.setCorrectAnswers(set.getInt("correct_answers"));
+                return word;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

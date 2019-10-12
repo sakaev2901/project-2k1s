@@ -1,5 +1,7 @@
 package models;
 
+import java.util.List;
+
 public class User {
     private Integer id;
     private String firstName;
@@ -10,6 +12,7 @@ public class User {
     private Boolean isPremium;
     private String login;
     private String birthday;
+    private List<Dictionary> dictionaryList;
 
     public User() {
     }
@@ -107,5 +110,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Dictionary> getDictionaryList() {
+        return dictionaryList;
+    }
+
+    public void setDictionaryList(List<Dictionary> dictionaryList) {
+        this.dictionaryList = dictionaryList;
     }
 }

@@ -22,6 +22,4 @@ public interface DictionaryDao extends BaseDao<Dictionary> {
 
     @Override
     List<Dictionary> findAll();
-
-    void linkWithUser(Dictionary model);
 }
