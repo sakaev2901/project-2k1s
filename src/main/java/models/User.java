@@ -138,4 +138,16 @@ public class User {
         return map;
     }
 
+    public Dictionary getDictionatyById(Integer id) {
+        Dictionary temp = null;
+        for (Dictionary dictionary:this.dictionaryList
+             ) {
+            if(dictionary.getId() == id ) {
+                temp = dictionary;
+                break;
+            }
+        }
+        return temp;
+    }
+
 }
