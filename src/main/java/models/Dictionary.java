@@ -1,9 +1,6 @@
 package models;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Dictionary {
     String name;
@@ -38,5 +35,14 @@ public class Dictionary {
 
     public void setDictionary(LinkedList<Word> dictionary) {
         this.dictionary = dictionary;
+    }
+
+    public Map<String, String> getDictionaryAsMap() {
+        Map<String, String> dictionaryMap = new LinkedHashMap<>();
+        for (Word word: this.dictionary
+             ) {
+            dictionaryMap.put(word.getWord(), word.getTranslation());
+        }
+        return dictionaryMap;
     }
 }

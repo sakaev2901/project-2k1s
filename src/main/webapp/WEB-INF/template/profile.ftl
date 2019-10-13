@@ -6,7 +6,9 @@
 </head>
 <body>
     <p>${user}</p>
-    <p>${id}</p>
+    <#list list as id, name>
+        <a href="dictionary/${id}"><p>${name}</p></a>
+    </#list>
     <form action="logout">
         <input type="submit" value="Выйти">
     </form>
