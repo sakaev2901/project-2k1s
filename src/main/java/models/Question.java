@@ -1,5 +1,9 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Question {
     private String word;
     private String correctAnswer;
@@ -14,6 +18,10 @@ public class Question {
         this.wrongAnswer1 = wrongAnswer1;
         this.wrongAnswer2 = wrongAnswer2;
         this.wrongAnswer3 = wrongAnswer3;
+    }
+
+    public Question() {
+
     }
 
     public String getWord() {
@@ -54,5 +62,43 @@ public class Question {
 
     public void setWrongAnswer3(String wrongAnswer3) {
         this.wrongAnswer3 = wrongAnswer3;
+    }
+
+    public List<String> getRandomAnswersAsList() {
+        List<String> list = new LinkedList<>();
+
+        for (int randomIndex:
+             getFourRandomIndexes()) {
+            switch (randomIndex) {
+                case 0: {
+                    list.add(this.correctAnswer);
+                    break;
+                }
+                case 1: {
+                    list.add(this.wrongAnswer1);
+                    break;
+                }
+                case 2: {
+                    list.add(this.wrongAnswer2);
+                    break;
+                }
+                case 3: {
+                    list.add(this.wrongAnswer3);
+                    break;
+                }
+            }
+        }
+        return list;
+    }
+
+    public List<Integer> getFourRandomIndexes() {
+        List<Integer> fourRandomIndexes = new ArrayList<>();
+        while (fourRandomIndexes.size() < 4) {
+            Integer randomWrongAnswerIndex = (int)(Math.random() * 4);
+            if (!fourRandomIndexes.contains(randomWrongAnswerIndex)) {
+                fourRandomIndexes.add(randomWrongAnswerIndex);
+            }
+        }
+        return fourRandomIndexes;
     }
 }
