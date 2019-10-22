@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         String path = "/login_page.ftl";
         HttpSession session = req.getSession();
+        //TODO: fix this shit_2
         User user = (User)session.getAttribute("user");
         if(user != null) {
             resp.sendRedirect("profile");

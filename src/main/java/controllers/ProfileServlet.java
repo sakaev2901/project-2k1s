@@ -21,6 +21,7 @@ public class ProfileServlet extends HttpServlet {
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_29);
         configuration.setObjectWrapper(ObjectWrapper.BEANS_WRAPPER);
         HttpSession session = req.getSession();
+        //TODO: fix this shit_1
         User user = (User) session.getAttribute("user");
         if (user != null) {
             req.setAttribute("list", user.getDictionaryIdAndNameAsMap());
