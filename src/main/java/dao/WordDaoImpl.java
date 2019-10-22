@@ -75,6 +75,9 @@ public class WordDaoImpl implements WordDao {
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } finally {
+            CONFIG.close(statement);
+            CONFIG.close(connection);
         }
     }
 
