@@ -1,12 +1,10 @@
 package models;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 public class Dictionary {
     String name;
-    LinkedList<Word> dictionary;
+    List<Word> dictionary;
     int id;
 
     public int getId() {
@@ -31,11 +29,20 @@ public class Dictionary {
         this.dictionary.add(word);
     }
 
-    public LinkedList<Word> getDictionary() {
+    public List<Word> getDictionary() {
         return dictionary;
     }
 
     public void setDictionary(LinkedList<Word> dictionary) {
         this.dictionary = dictionary;
+    }
+
+    public Map<String, String> getDictionaryAsMap() {
+        Map<String, String> dictionaryMap = new LinkedHashMap<>();
+        for (Word word: this.dictionary
+             ) {
+            dictionaryMap.put(word.getWord(), word.getTranslation());
+        }
+        return dictionaryMap;
     }
 }

@@ -58,6 +58,7 @@ public class UserDaoImpl implements UserDao {
     public User findByLogin(String login) {
         Connection connection = null;
         PreparedStatement statement = null;
+        UserDictionaryDaoImpl userDictionaryDao = new UserDictionaryDaoImpl();
         try {
             connection = CONFIG.getConnection();
             statement = connection.prepareStatement(FIND_BY_LOGIN);
@@ -73,7 +74,7 @@ public class UserDaoImpl implements UserDao {
                 user.setPhone(set.getString("phone"));
                 user.setPassword(set.getString("password"));
                 user.setId(set.getInt("id"));
-
+                user.setDictionaryList(userDictionaryDao.find(set.getInt("id")));
                 return user;
             } else {
                 return null;

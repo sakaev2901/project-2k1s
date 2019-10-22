@@ -1,5 +1,7 @@
 package models;
 
+import java.util.*;
+
 public class User {
     private Integer id;
     private String firstName;
@@ -8,8 +10,9 @@ public class User {
     private String phone;
     private String password;
     private Boolean isPremium;
-    private String login;
+    public String login;
     private String birthday;
+    private List<Dictionary> dictionaryList;
 
     public User() {
     }
@@ -108,4 +111,43 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public List<Dictionary> getDictionaryList() {
+        return dictionaryList;
+    }
+
+    public void setDictionaryList(List<Dictionary> dictionaryList) {
+        this.dictionaryList = dictionaryList;
+    }
+
+    public List<String> getDictionaryNameAsList() {
+        List<String> dictionaryNameList= new LinkedList<>();
+        for (Dictionary dictionary: dictionaryList
+             ) {
+            dictionaryNameList.add(dictionary.getName());
+        }
+        return dictionaryNameList;
+    }
+
+    public Map<String, String> getDictionaryIdAndNameAsMap() {
+        Map<String, String> map = new HashMap<>();
+        for (Dictionary dictionary: dictionaryList
+        ) {
+            map.put(String.valueOf(dictionary.getId()), dictionary.getName());
+        }
+        return map;
+    }
+
+    public Dictionary getDictionatyById(Integer id) {
+        Dictionary temp = null;
+        for (Dictionary dictionary:this.dictionaryList
+             ) {
+            if(dictionary.getId() == id ) {
+                temp = dictionary;
+                break;
+            }
+        }
+        return temp;
+    }
+
 }
