@@ -19,6 +19,7 @@ public class DictionaryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        //TODO: fix this shit_1
         User user = (User)session.getAttribute("user");
         String url = req.getPathInfo();
         Integer dictionaryId = Integer.valueOf(url.substring(1));

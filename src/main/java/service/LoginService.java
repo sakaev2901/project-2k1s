@@ -11,9 +11,9 @@ public class LoginService {
 
     public boolean checkLoginAndPassword(HttpServletRequest request, HttpSession session) {
         UserDaoImpl userDao = new UserDaoImpl();
-        User user = userDao.findByLogin(request.getParameter("login"));
-        if (user != null && user.getPassword().equals(request.getParameter("password"))) {
-            session.setAttribute("user", user);
+        Integer userId = userDao.findByPasswordAndLogin(request.getParameter("login"), request.getParameter("password"));
+        if (userId != null) {
+            session.setAttribute("user", userId);
             return true;
         }
         return false;

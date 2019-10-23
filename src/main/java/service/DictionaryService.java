@@ -30,6 +30,7 @@ public class DictionaryService {
                 translation = new String(line.split(" - ")[1].getBytes(), StandardCharsets.UTF_8);
                 dictionary.addWord(new Word(word, translation));
             }
+            //TODO: fix this shit_1
             sendToDB((User) session.getAttribute("user"));
             return this.dictionary;
         } catch (IOException e) {

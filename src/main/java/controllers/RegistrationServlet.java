@@ -42,6 +42,7 @@ public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        //TODO: fix this shit_1
         User user = (User)session.getAttribute("user");
         if(user != null) {
             resp.sendRedirect("profile");
@@ -65,7 +66,7 @@ public class RegistrationServlet extends HttpServlet {
                 req.getParameter("phone"),
                 req.getParameter("password")
                 );
-        resp.setCharacterEncoding("windows-1251");
+//        resp.setCharacterEncoding("windows-1251");
         resp.getWriter().write("sdgsd Спасибо, брат :3");
     }
 }

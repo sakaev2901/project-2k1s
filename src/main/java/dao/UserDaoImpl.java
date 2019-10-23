@@ -13,6 +13,7 @@ public class UserDaoImpl implements UserDao {
     private static final String FIND_ALL = "SELECT * FROM user ORDER BY id";
     private static final String FIND_BY_ID = "SELECT * FROM user WHERE id=?";
     private static final String FIND_BY_LOGIN = "SELECT * FROM public.user WHERE \"login\"=?";
+    private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT id FROM public.user WHERE \"login\"=? AND \"password\"=?;";
 
     private static final String INSERT = "INSERT INTO public.user (login, firstname, surname, birthday, mail, phone, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
 //    private static final String UPDATE = "UPDATE user SET name=?, tel=?, passwd=? WHERE id=?";
@@ -55,6 +56,7 @@ public class UserDaoImpl implements UserDao {
         return null;
     }
 
+    @Override
     public User findByLogin(String login) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -84,6 +86,31 @@ public class UserDaoImpl implements UserDao {
         } finally {
             CONFIG.close(connection);
             CONFIG.close(statement);
+        }
+    }
+
+
+    @Override
+    public Integer findByPasswordAndLogin(String login, String password) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(FIND_BY_LOGIN_AND_PASSWORD);
+            statement.setString(1, login);
+            statement.setString(2, password);
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                return set.getInt("id");
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            CONFIG.close(statement);
+            CONFIG.close(connection);
         }
     }
 

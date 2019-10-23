@@ -21,8 +21,9 @@ public class LoginServlet extends HttpServlet {
         resp.setContentType("text/html; charset=UTF-8");
         String path = "/login_page.ftl";
         HttpSession session = req.getSession();
-        User user = (User)session.getAttribute("user");
-        if(user != null) {
+        //TODO: fix this shit_2
+        Integer userId = (Integer) session.getAttribute("user");
+        if(userId != null) {
             resp.sendRedirect("profile");
         } else {
             RequestDispatcher dispatcher = req.getRequestDispatcher(path);
@@ -35,9 +36,9 @@ public class LoginServlet extends HttpServlet {
         LoginService loginService = new LoginService();
         HttpSession session = req.getSession();
         loginService.checkLoginAndPassword(req, session);
-        User user = (User)session.getAttribute("user");
+        Integer userId = (Integer) session.getAttribute("user");
         Writer writer = resp.getWriter();
-        if (user == null) {
+        if (userId == null) {
             writer.write("Wrong login or password");
         } else {
             resp.sendRedirect("profile");
