@@ -23,9 +23,10 @@ public class ProfileServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Integer userId = (Integer) session.getAttribute("user");
         if (userId != null) {
-            req.setAttribute("list", user.getDictionaryIdAndNameAsMap());
-            req.setAttribute("user", user.getLogin());
-            req.getRequestDispatcher("/profile.ftl").forward(req, resp);
+//            req.setAttribute("list", user.getDictionaryIdAndNameAsMap());
+//            req.setAttribute("user", user.getLogin());
+//            req.getRequestDispatcher("/profile.ftl").forward(req, resp);
+            resp.getWriter().write("So fassssssst");
         } else {
             resp.sendRedirect("login");
         }
