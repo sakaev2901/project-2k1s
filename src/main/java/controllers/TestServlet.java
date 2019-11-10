@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Question;
+import service.AnswerCheckerService;
 import service.CreateTestService;
 
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class TestServlet extends HttpServlet {
         List<String> list = question.getRandomAnswersAsList();
         session.setAttribute("question", question);
         session.setAttribute("answersList", list);
-        req.setAttribute("word", question.getWord());
+        req.setAttribute("word", question.getWord().getWord());
         req.setAttribute("answer1", list.get(0));
         req.setAttribute("answer2", list.get(1));
         req.setAttribute("answer3", list.get(2));
@@ -43,8 +44,10 @@ public class TestServlet extends HttpServlet {
         session.removeAttribute("question");
 //        session.removeAttribute("answersList");
         String[] answer = req.getParameterValues("answer");
-        req.setAttribute("word", currentQuestion.getWord());
-        if (!currentQuestion.getCorrectAnswer().equals(answer[0])) {
+        AnswerCheckerService answerCheckerService = new AnswerCheckerService();
+
+        req.setAttribute("word", currentQuestion.getWord().getWord());
+        if (!answerCheckerService.checkAnswer(currentQuestion, answer[0])) {
             req.setAttribute("wrongAnswer", answer[0]);
             req.setAttribute("correctAnswer", currentQuestion.getCorrectAnswer());
         }

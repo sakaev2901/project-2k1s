@@ -101,7 +101,7 @@ public class WordDaoImpl implements WordDao {
         PreparedStatement statement = null;
         Integer currentProgress = word.getCorrectAnswers();
         if (isCorrect) {
-            currentProgress--;
+            currentProgress++;
         } else {
             currentProgress--;
         }

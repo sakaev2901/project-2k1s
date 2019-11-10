@@ -4,8 +4,10 @@ import dao.WordDaoImpl;
 import models.Question;
 
 public class AnswerCheckerService {
-    public void checkAnswer(Question currentQuestion, String answer) {
+    public boolean checkAnswer(Question currentQuestion, String answer) {
         WordDaoImpl wordDao = new WordDaoImpl();
-        wordDao.updateProgress(answer.equals(currentQuestion.getCorrectAnswer()), currentQuestion.);
+        boolean isCorrect = answer.equals(currentQuestion.getCorrectAnswer());
+        wordDao.updateProgress(isCorrect, currentQuestion.getWord());
+        return isCorrect;
     }
 }
