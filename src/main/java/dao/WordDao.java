@@ -1,5 +1,6 @@
 package dao;
 
+import models.Question;
 import models.Word;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface WordDao extends BaseDao<Word> {
 
     @Override
     List<Word> findAll();
+
+    void updateProgress(boolean isCorrect, Word word);
 }

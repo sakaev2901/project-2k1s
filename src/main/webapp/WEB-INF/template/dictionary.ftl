@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <form action="/project_2k1s_war_exploded/test${id}">
+    <form action="/project_2k1s_war_exploded/dictionary/test/${id}">
         <input type="submit" value="Пройти тест">
     </form>
     <table>

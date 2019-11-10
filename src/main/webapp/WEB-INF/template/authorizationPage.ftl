@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <td><button type="submit">Войти</button></td>
-            <td><input id="remember" type="checkbox" name="remember">
+            <td><input id="remember" type="checkbox" name="remember" value="true">
             <label for="remember">Запомнить</label></td>
         </tr>
     </table>
@@ -33,7 +33,7 @@
         <tr><td><a href="passwordReset.html"><button>Забыли пароль?</button></a></td></tr>
 
     <tr><td><label>Нет аккаунта?</label>
-        <a href="registrationPage.html"><button>Зарегистрируйтесь</button></a></td></tr>
+        <a href="../../html/registrationPage.html"><button>Зарегистрируйтесь</button></a></td></tr>
     </table>
 </form>
 </body>
