@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+</head>
+<body>
+<h1>Войти</h1>
+<p>Пожалуйста, введите свои данные</p>
+<form method="post">
+    <table>
+        <tr>
+            <td><label for="login">Логин</label></td>
+            <td><input id="login" type="text" name="login" required></td>
+        </tr>
+        <tr>
+            <td><label for="password">Пароль</label></td>
+            <td><input id="password" type="password" name="password" required></td>
+        </tr>
+        <tr>
+            <td><button type="submit">Войти</button></td>
+            <td><input id="remember" type="checkbox" name="remember">
+            <label for="remember">Запомнить</label></td>
+        </tr>
+    </table>
+</form>
+<hr>
+<form>
+    <table>
+        <tr><td><a href="passwordReset.html"><button>Забыли пароль?</button></a></td></tr>
+
+    <tr><td><label>Нет аккаунта?</label>
+        <a href="authorizationPage.html"><button>Зарегистрируйтесь</button></a></td></tr>
+    </table>
+</form>
+</body>
+</html>
