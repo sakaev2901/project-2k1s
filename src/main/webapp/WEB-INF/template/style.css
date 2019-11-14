@@ -1,0 +1,63 @@
+<style type="text/css">
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+header {
+    width: 100%;
+    height: 12vh;
+    background-color: purple;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+
+.nav-links li {
+    list-style: none;
+    margin: 10px;
+    margin-top: 20px;
+    border: 1px white solid;
+    padding: 5px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+}
+
+.dictionary-item {
+    border: 3px purple dashed;
+    width: 200px;
+    height: 100px;
+    margin: 20px;
+}
+
+.item {
+    display: inline-block;
+    clear: right;
+}
+
+main {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 65vw;
+    margin: 0 auto;
+}
+
+
+</style>
