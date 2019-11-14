@@ -1,0 +1,56 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 12vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    min-height: 8vh;
+    background-color: black;
+}
+
+.redirect-login a {
+    color: purple;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links li a{
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-links li a:hover
+{
+    /*color: purple;*/
+    background-color: purple;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/*HEADER*/
+
+/*FOOTER*/
+footer {
+    height: 70px;
+    background-color: #f8e2f7;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+/*FOOTER*/
