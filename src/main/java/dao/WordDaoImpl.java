@@ -1,5 +1,6 @@
 package dao;
 
+import models.Question;
 import models.Word;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -13,6 +14,7 @@ public class WordDaoImpl implements WordDao {
 
     public static final String INSERT = "INSERT INTO public.word (word, translation, correct_answers) VALUES(?, ?, ?);";
     public static final String FIND = "SELECT * FROM word WHERE \"id\"=?";
+    public final String UPDATE_PROGRESS = "UPDATE word SET \"correct_answers\" = ? WHERE \"id\"=?";
 
     @Override
     public int save(Word model) {
@@ -28,6 +30,7 @@ public class WordDaoImpl implements WordDao {
             statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, model.getWord());
             statement.setString(2, model.getTranslation());
+            statement.setInt(3, 5);
             int result = statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
             if (set.next()) {
@@ -81,6 +84,7 @@ public class WordDaoImpl implements WordDao {
         }
     }
 
+
     @Override
     public void delete(int id) {
 
@@ -89,5 +93,29 @@ public class WordDaoImpl implements WordDao {
     @Override
     public List<Word> findAll() {
         return null;
+    }
+
+    @Override
+    public void updateProgress(boolean isCorrect, Word word) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        Integer currentProgress = word.getCorrectAnswers();
+        if (isCorrect) {
+            currentProgress++;
+        } else {
+            currentProgress--;
+        }
+        try {
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(UPDATE_PROGRESS);
+            statement.setInt(1,currentProgress);
+            statement.setInt(2, word.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        } finally {
+            CONFIG.close(statement);
+            CONFIG.close(connection);
+        }
     }
 }

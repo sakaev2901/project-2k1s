@@ -5,14 +5,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Question {
-    private String word;
+    private Word word;
     private String correctAnswer;
     private String wrongAnswer1;
     private String wrongAnswer2;
     private String wrongAnswer3;
 
 
-    public Question(String word, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
+    public Question(Word word, String correctAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3) {
         this.word = word;
         this.correctAnswer = correctAnswer;
         this.wrongAnswer1 = wrongAnswer1;
@@ -24,11 +24,11 @@ public class Question {
 
     }
 
-    public String getWord() {
+    public Word getWord() {
         return word;
     }
 
-    public void setWord(String word) {
+    public void setWord(Word word) {
         this.word = word;
     }
 

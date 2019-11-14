@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.DictionaryDaoImpl;
 import models.Dictionary;
 import models.User;
 
@@ -18,13 +19,12 @@ public class DictionaryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        //TODO: fix this shit_1
-        User user = (User)session.getAttribute("user");
         String url = req.getPathInfo();
         Integer dictionaryId = Integer.valueOf(url.substring(1));
-        Dictionary dictionary = user.getDictionatyById(dictionaryId);
+        DictionaryDaoImpl dictionaryDao = new DictionaryDaoImpl();
+        Dictionary dictionary = dictionaryDao.find(dictionaryId);
         Map<String, String> dictionaryMap = dictionary.getDictionaryAsMap();
+        req.setAttribute("id", dictionaryId);
         req.setAttribute("dictionary", dictionaryMap);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/dictionary.ftl");
         dispatcher.forward(req, resp);

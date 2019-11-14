@@ -11,7 +11,8 @@ import java.util.LinkedList;
 public class DictionaryWordDaoImpl implements DictionaryWordDao {
     public static final ConnectionConfig CONFIG = new ConnectionConfig();
 
-    public static final String FIND = "SELECT * FROM dictionary_word WHERE \"id_dictionary\"=?";
+    public final String FIND = "SELECT * FROM dictionary_word WHERE \"id_dictionary\"=?";
+
     @Override
     public LinkedList<Word> find(Integer id) {
         Connection connection = null;
@@ -35,4 +36,6 @@ public class DictionaryWordDaoImpl implements DictionaryWordDao {
             CONFIG.close(connection);
         }
     }
+
+
 }

@@ -1,5 +1,7 @@
 package controllers;
 
+import service.LogoutService;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +17,8 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         session.removeAttribute("user");
+        LogoutService logoutService = new LogoutService();
+        logoutService.logout(resp, req);
         resp.sendRedirect("login");
     }
 }

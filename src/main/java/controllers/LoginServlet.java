@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         resp.setContentType("text/html; charset=UTF-8");
-        String path = "/login_page.ftl";
+        String path = "/authorizationPage.ftl";
         HttpSession session = req.getSession();
         //TODO: fix this shit_2
         Integer userId = (Integer) session.getAttribute("user");
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         LoginService loginService = new LoginService();
         HttpSession session = req.getSession();
-        loginService.checkLoginAndPassword(req, session);
+        loginService.checkLoginAndPassword(req, resp);
         Integer userId = (Integer) session.getAttribute("user");
         Writer writer = resp.getWriter();
         if (userId == null) {

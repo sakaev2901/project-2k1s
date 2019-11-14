@@ -5,6 +5,7 @@ import models.Word;
 import service.DictionaryService;
 import service.SavingWordService;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +38,7 @@ public class ParseFileServlet extends HttpServlet {
 //        String fileName = getSubmittedFileName(filePart);
         InputStream fileContent = filePart.getInputStream();
         String dictionaryName = req.getParameter("name");
-        Dictionary dictionary = dictionaryService.parseFile(" - ", fileContent, dictionaryName, req.getSession());
+        Dictionary dictionary = dictionaryService.parseFile(" - ", fileContent, dictionaryName, (Integer) req.getSession().getAttribute("user"));
         savingWordService.saveDictionaryAsWords(dictionary);
         req.setCharacterEncoding("UTF-8");
         req.getRequestDispatcher("/parseResult.ftl").forward(req, resp);

@@ -9,11 +9,11 @@ public class UserDaoImpl implements UserDao {
 
     public static final ConnectionConfig CONFIG = new ConnectionConfig();
 
-    private static final String DELETE = "DELETE FROM user WHERE id=?";
-    private static final String FIND_ALL = "SELECT * FROM user ORDER BY id";
-    private static final String FIND_BY_ID = "SELECT * FROM user WHERE id=?";
-    private static final String FIND_BY_LOGIN = "SELECT * FROM public.user WHERE \"login\"=?";
-    private static final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT id FROM public.user WHERE \"login\"=? AND \"password\"=?;";
+    private final String DELETE = "DELETE FROM user WHERE id=?";
+    private final String FIND_ALL = "SELECT * FROM user ORDER BY id";
+    private final String FIND_BY_ID = "SELECT * FROM user WHERE id=?";
+    private final String FIND_BY_LOGIN = "SELECT * FROM public.user WHERE \"login\"=?";
+    private final String FIND_BY_LOGIN_AND_PASSWORD = "SELECT id FROM public.user WHERE \"login\"=? AND \"password\"=?;";
 
     private static final String INSERT = "INSERT INTO public.user (login, firstname, surname, birthday, mail, phone, password) VALUES(?, ?, ?, ?, ?, ?, ?)";
 //    private static final String UPDATE = "UPDATE user SET name=?, tel=?, passwd=? WHERE id=?";

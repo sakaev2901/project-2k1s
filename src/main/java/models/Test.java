@@ -29,7 +29,7 @@ public class Test {
         Integer randomCorrectAnswerIndex = (int)(Math.random() * dictionarySize);
         randomingWrongWordIndexes(randomCorrectAnswerIndex, dictionaryList);
         Word correctWord = dictionaryList.get(randomCorrectAnswerIndex);
-        this.question.setWord(correctWord.getWord());
+        this.question.setWord(correctWord);
         this.question.setCorrectAnswer(correctWord.getTranslation());
         this.question.setWrongAnswer1(dictionaryList.get(threeRandomIndex.get(0)).getTranslation());
         this.question.setWrongAnswer2(dictionaryList.get(threeRandomIndex.get(1)).getTranslation());
