@@ -48,7 +48,7 @@ public class RegistrationServlet extends HttpServlet {
             resp.sendRedirect("profile");
         } else {
             resp.setContentType("text/html;charset=UTF-8");
-            String path = "/example.ftl";
+            String path = "/registrationPage.ftl";
             RequestDispatcher requestDispatcher = req.getRequestDispatcher(path);
             requestDispatcher.forward(req, resp);
         }

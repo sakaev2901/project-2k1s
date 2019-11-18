@@ -1,0 +1,224 @@
+<style type="text/css">
+
+body {
+    background: no-repeat url("watercolors-413270.jpg");
+    background-size: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    padding-top: 50px;
+    padding-bottom: 300px;
+}
+
+html {
+    min-height: 100%;
+    position: relative;
+}
+
+.container {
+    width: 420px;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.signUp, .login {
+    padding: 0px 25px 25px;
+    background: #fff;
+    box-shadow:
+            0px 0px 0px 5px rgba( 255,255,255,0.4 ),
+            0px 4px 20px rgba( 0,0,0,0.33 );
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    display: table;
+    position: static;
+    margin: auto 0;
+    text-align: center;
+}
+
+.signUp .header, .login .header {
+    margin-bottom: 20px;
+    padding-top: 25px;
+}
+
+.signUp .header h3, .login .header h3 {
+    color: rgba(75, 39, 88, 0.7);
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding-bottom: 10px;
+}
+
+.signUp .header p, .login .header p {
+    color: #8f8f8f;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.signUp .sep, .login .sep {
+    height: 1px;
+    background: #e8e8e8;
+    width: 406px;
+    margin: 0px -25px;
+}
+
+.signUp .inputs, .login .inputs {
+    margin-top: 25px;
+}
+
+.signUp .inputs label, .login .inputs label {
+    color: #8f8f8f;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 7px;
+    display: block;
+}
+
+input::-webkit-input-placeholder {
+    color:    #b5b5b5;
+}
+
+input:-moz-placeholder {
+    color:    #b5b5b5;
+}
+
+.signUp .inputs input[type=email], input[type=password], input[type=text], input[type=tel], input[type=date],
+.login .inputs input[type=email], input[type=password], input[type=text], input[type=tel], input[type=date] {
+    background: #f5f5f5;
+    font-size: 0.8rem;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    padding: 13px 10px;
+    width: 330px;
+    margin-bottom: 20px;
+    box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 );
+    clear: both;
+}
+
+.signUp .inputs input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus,
+input[type=date]:focus, .login .inputs input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, input[type=tel]:focus,
+                                                                                    input[type=date]:focus {
+    background: #fff;
+    box-shadow: 0px 0px 0px 1px #7118a1, inset 0px 2px 3px rgba( 0,0,0,0.2 ), 0px 5px 5px rgba( 0,0,0,0.15 );
+    outline: none;
+}
+
+.signUp .inputs .checkboxy {
+    display: block;
+    position: static;
+    height: 25px;
+    margin-top: 10px;
+    clear: both;
+}
+
+.signUp .inputs input[type=checkbox] {
+    float: left;
+    margin-right: 10px;
+    margin-top: 3px;
+}
+
+.signUp .inputs label.terms, .login .inputs label.terms {
+    float: left;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/*#signup .inputs #submit, #reset {*/
+    /*width: 330px;*/
+    /*margin-top: 10px;*/
+    /*margin-left:14px;*/
+    /*padding: 13px 10px;*/
+    /*color: #fff;*/
+    /*font-size: 14px;*/
+    /*font-weight: 500;*/
+    /*letter-spacing: 1px;*/
+    /*text-align: center;*/
+    /*text-decoration: none;*/
+    /*background: -moz-linear-gradient(*/
+            /*top,*/
+            /*#b9c5dd 0%,*/
+            /*#a4b0cb);*/
+    /*background: -webkit-gradient(*/
+            /*linear, left top, left bottom,*/
+            /*from(#b9c5dd),*/
+            /*to(#a4b0cb));*/
+    /*-moz-border-radius: 5px;*/
+    /*-webkit-border-radius: 5px;*/
+    /*border-radius: 5px;*/
+    /*border: 1px solid #737b8d;*/
+    /*-moz-box-shadow:*/
+            /*0px 5px 5px rgba(000,000,000,0.1),*/
+            /*inset 0px 1px 0px rgba(255,255,255,0.5);*/
+    /*-webkit-box-shadow:*/
+            /*0px 5px 5px rgba(000,000,000,0.1),*/
+            /*inset 0px 1px 0px rgba(255,255,255,0.5);*/
+    /*box-shadow:*/
+            /*0px 5px 5px rgba(000,000,000,0.1),*/
+            /*inset 0px 1px 0px rgba(255,255,255,0.5);*/
+    /*text-shadow:*/
+            /*0px 1px 3px rgba(000,000,000,0.3),*/
+            /*0px 0px 0px rgba(255,255,255,0);*/
+    /*display: table;*/
+    /*position: static;*/
+    /*clear: both;*/
+/*}*/
+
+/*#signup .inputs #submit:hover, #reset:hover{*/
+    /*background: -moz-linear-gradient(*/
+            /*top,*/
+            /*#a4b0cb 0%,*/
+            /*#b9c5dd);*/
+    /*background: -webkit-gradient(*/
+            /*linear, left top, left bottom,*/
+            /*from(#a4b0cb),*/
+            /*to(#b9c5dd));*/
+/*}*/
+
+
+.signUp .inputs #reset, #submit, .login .inputs #reset, #submit {
+    width: 100px;
+    background: rgba(82, 44, 98, 0.73);
+    font-weight: bold;
+    color: #f7f7f7;
+    border: 0 none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px 5px;
+    margin: 10px 5px;
+    font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    font-size: smaller;
+}
+
+.signUp .inputs #reset:hover, #reset:focus, #submit:hover, #submit:focus, .login .inputs #reset:hover, #reset:focus, #submit:hover, #submit:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(78, 34, 98, 0.73);
+}
+
+label{
+    /*float:left;*/
+    /*width:150px;*/
+    margin-bottom:100px; /*or whatever you want the spacing to be*/
+}
+/*input{*/
+    /*float:left;*/
+    /*width:150px;*/
+    /*margin-bottom:10px; !*or whatever you want the spacing to be*!*/
+/*}*/
+
+.signUp .inputs .redirect-login, .login .inputs .redirect-login {
+    text-align: center;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(75, 39, 88, 0.7);
+}
+
+a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: rgba(75, 39, 88, 0.7);
+}
+
+</style>

@@ -64,7 +64,7 @@
                 <button id="reset" type="reset">Сбросить</button>
                 <button id="submit" type="submit">Войти</button>
 
-                <div class="redirect-login col-12 align-self-start">Нет аккаунта? <div><a href="registrationPage.html">Зарегистрироваться</a></div></div>
+                <div class="redirect-login col-12 align-self-start">Нет аккаунта? <div><a href="registrationPage.ftl">Зарегистрироваться</a></div></div>
             </div>
             </fieldset>
         </form>

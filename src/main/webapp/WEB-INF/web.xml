@@ -23,6 +23,11 @@
         <servlet-name>freemarker</servlet-name>
         <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
 
+
+        <init-param>
+            <param-name>object_wrapper</param-name>
+            <param-value>DefaultObjectWrapper(2.3.27)</param-value>
+        </init-param>
         <init-param>
             <param-name>TemplatePath</param-name>
             <param-value>/WEB-INF/template/</param-value>
