@@ -5,10 +5,10 @@ import models.Dictionary;
 import models.Question;
 import models.Test;
 
-public class CreateTestService {
+public class TestService {
     Dictionary dictionary;
 
-    public CreateTestService(int id) {
+    public TestService(int id) {
         DictionaryDaoImpl dictionaryDao = new DictionaryDaoImpl();
         this.dictionary = dictionaryDao.find(id);
     }

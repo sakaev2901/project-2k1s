@@ -47,7 +47,7 @@
 
                     <input id="psw" type="password" name="password" placeholder="Пароль" required minlength="6" maxlength="20" />
 
-                    <input id="psw-repeat" type="confirmedpassword" name="psw-repeat" placeholder="Подтверждение пароля" required />
+                    <input id="psw-repeat" type="password" name="psw-repeat" placeholder="Подтверждение пароля" required />
 
                     <button id="reset" type="reset">Сбросить</button>
                     <button id="submit" type="submit">Далее</button>

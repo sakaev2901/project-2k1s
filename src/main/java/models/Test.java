@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,8 +26,8 @@ public class Test {
 
     public Question createQuestion() {
         List<Word> dictionaryList = this.dictionary.getDictionary();
-        Integer dictionarySize = dictionaryList.size();
-        Integer randomCorrectAnswerIndex = (int)(Math.random() * dictionarySize);
+        Collections.sort(dictionaryList);
+        Integer randomCorrectAnswerIndex = 0;
         randomingWrongWordIndexes(randomCorrectAnswerIndex, dictionaryList);
         Word correctWord = dictionaryList.get(randomCorrectAnswerIndex);
         this.question.setWord(correctWord);

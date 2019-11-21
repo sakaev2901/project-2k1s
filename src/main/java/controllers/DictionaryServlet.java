@@ -3,6 +3,7 @@ package controllers;
 import dao.DictionaryDaoImpl;
 import models.Dictionary;
 import models.User;
+import models.Word;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @WebServlet(name = "DictionaryServlet", urlPatterns = "/dictionary/*")
@@ -24,8 +26,10 @@ public class DictionaryServlet extends HttpServlet {
         DictionaryDaoImpl dictionaryDao = new DictionaryDaoImpl();
         Dictionary dictionary = dictionaryDao.find(dictionaryId);
         Map<String, String> dictionaryMap = dictionary.getDictionaryAsMap();
+        List<Word> dictionaryList = dictionary.getDictionary();
+
         req.setAttribute("id", dictionaryId);
-        req.setAttribute("dictionary", dictionaryMap);
+        req.setAttribute("dictionary", dictionaryList);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/dictionary.ftl");
         dispatcher.forward(req, resp);
 

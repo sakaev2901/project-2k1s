@@ -1,6 +1,6 @@
 package models;
 
-public class Word {
+public class Word implements Comparable<Word>{
     private Integer id;
     private int correctAnswers;
     private String word;
@@ -45,5 +45,16 @@ public class Word {
 
     public void setCorrectAnswers(int correctAnswers) {
         this.correctAnswers = correctAnswers;
+    }
+
+    @Override
+    public int compareTo(Word o) {
+        if (this.correctAnswers > o.correctAnswers) {
+            return 1;
+        } else if (this.correctAnswers == o.correctAnswers) {
+            return 0;
+        } else {
+            return -1;
+        }
     }
 }
