@@ -1,10 +1,15 @@
 package models;
 
+import java.io.InputStream;
+
 public class Word implements Comparable<Word>{
     private Integer id;
     private int correctAnswers;
     private String word;
     private String translation;
+    private InputStream photo;
+
+
 
     public Word(String word, String translation) {
         this.word = word;
@@ -13,6 +18,14 @@ public class Word implements Comparable<Word>{
 
     public Word() {
 
+    }
+
+    public InputStream getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(InputStream photo) {
+        this.photo = photo;
     }
 
     public String getWord() {

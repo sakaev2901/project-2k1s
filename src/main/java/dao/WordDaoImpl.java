@@ -12,7 +12,8 @@ public class WordDaoImpl implements WordDao {
     public static final String INSERT_LINKING = "INSERT INTO public.dictionary_word (id_dictionary, id_word) VALUES(?, ?);";
     public static final ConnectionConfig CONFIG = new ConnectionConfig();
 
-    public static final String INSERT = "INSERT INTO public.word (word, translation, correct_answers) VALUES(?, ?, ?);";
+    public static final String INSERT = "INSERT INTO public.word (word, translation, correct_answers, photo) VALUES(?, ?, ?, ?);";
+
     public static final String FIND = "SELECT * FROM word WHERE \"id\"=?";
     public final String UPDATE_PROGRESS = "UPDATE word SET \"correct_answers\" = ? WHERE \"id\"=?";
 
@@ -31,6 +32,11 @@ public class WordDaoImpl implements WordDao {
             statement.setString(1, model.getWord());
             statement.setString(2, model.getTranslation());
             statement.setInt(3, 5);
+            if (model.getPhoto() != null) {
+                statement.setBinaryStream(4, model.getPhoto());
+            } else {
+                statement.setBinaryStream(4, null);
+            }
             int result = statement.executeUpdate();
             ResultSet set = statement.getGeneratedKeys();
             if (set.next()) {
@@ -117,5 +123,7 @@ public class WordDaoImpl implements WordDao {
             CONFIG.close(statement);
             CONFIG.close(connection);
         }
+
+
     }
 }

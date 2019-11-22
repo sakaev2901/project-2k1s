@@ -1,4 +1,4 @@
-package controllers;
+package controllers.user;
 
 import models.Dictionary;
 import models.Word;
