@@ -3,6 +3,7 @@ package controllers.user;
 import models.User;
 import service.LoginService;
 
+import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,12 +38,13 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         loginService.checkLoginAndPassword(req, resp);
         Integer userId = (Integer) session.getAttribute("user");
-
+        String role = (String)session.getAttribute("role");
         Writer writer = resp.getWriter();
         if (userId == null) {
             writer.write("Wrong login or password");
-        } else {
+        } else if(role.equals("user")){
             resp.sendRedirect("profile");
+        } else {
             resp.sendRedirect("adminPanel");
         }
         writer.close();

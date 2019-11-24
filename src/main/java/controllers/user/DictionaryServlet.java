@@ -25,7 +25,6 @@ public class DictionaryServlet extends HttpServlet {
         Integer dictionaryId = Integer.valueOf(url.substring(1));
         DictionaryDaoImpl dictionaryDao = new DictionaryDaoImpl();
         Dictionary dictionary = dictionaryDao.find(dictionaryId);
-        Map<String, String> dictionaryMap = dictionary.getDictionaryAsMap();
         List<Word> dictionaryList = dictionary.getDictionary();
 
         req.setAttribute("id", dictionaryId);

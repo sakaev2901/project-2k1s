@@ -11,6 +11,7 @@ public class PrimeWordDaoImpl {
     private static final String M2M_PRIME_DICTIONARY = "";
     private static final String UPDATE_PATHS = "UPDATE prime_word set \"photo_path\" = ?,  \"speech_path\" = ? where \"id\" = ?;";
     public static final String INSERT_LINKING = "INSERT INTO prime_dictionary_prime_word (dictionary_id, word_id) VALUES(?, ?);";
+    public static final String FIND = "SELECT * FROM prime_word WHERE \"id\"=?";
 
 
 
@@ -43,6 +44,34 @@ public class PrimeWordDaoImpl {
             return wordId;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
+        } finally {
+            CONFIG.close(statement);
+            CONFIG.close(connection);
+        }
+    }
+
+    public Word find(int id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(FIND);
+            statement.setInt(1, id);
+            ResultSet set = statement.executeQuery();
+            if (set.next()) {
+                Word word = new Word();
+                word.setId(id);
+                word.setWord(set.getString("word"));
+                word.setTranslation(set.getString("translation"));
+                word.setPhotoPath(set.getString("photo_path"));
+                word.setSpeechPath(set.getString("speech_path"));
+                return word;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         } finally {
             CONFIG.close(statement);
             CONFIG.close(connection);

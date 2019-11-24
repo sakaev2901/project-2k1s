@@ -7,7 +7,9 @@ public class Word implements Comparable<Word>{
     private int correctAnswers;
     private String word;
     private String translation;
-    private InputStream photo;
+    private String photoPath;
+    private String speechPath;
+
 
 
 
@@ -20,12 +22,20 @@ public class Word implements Comparable<Word>{
 
     }
 
-    public InputStream getPhoto() {
-        return photo;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setPhoto(InputStream photo) {
-        this.photo = photo;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
+    }
+
+    public String getSpeechPath() {
+        return speechPath;
+    }
+
+    public void setSpeechPath(String speechPath) {
+        this.speechPath = speechPath;
     }
 
     public String getWord() {
