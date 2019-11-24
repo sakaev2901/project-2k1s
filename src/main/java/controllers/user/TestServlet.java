@@ -33,7 +33,7 @@ public class TestServlet extends HttpServlet {
         req.setAttribute("answer2", list.get(1));
         req.setAttribute("answer3", list.get(2));
         req.setAttribute("answer4", list.get(3));
-        req.getRequestDispatcher("/question.ftl").forward(req, resp);
+        req.getRequestDispatcher("/testPage.ftl").forward(req, resp);
     }
 
     @Override

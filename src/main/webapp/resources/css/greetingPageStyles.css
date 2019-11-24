@@ -1,0 +1,193 @@
+
+    body {
+        background: no-repeat url("../images/watercolors-413270.jpg");
+        background-size: 100%;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: "Helvetica Neue", Helvetica, Arial, serif;
+    }
+    
+    .nav-bar-container {
+        width: 100vw;
+        height: 60px;
+        flex-shrink: 0;
+        display: flex;
+        flex-basis: 10%;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(75, 39, 88, 0.7);
+    }
+    
+    a:link {
+        color: white;
+    }
+    
+    a:visited {
+        color: #7118a1;
+    }
+    
+    a:hover {
+        color: #ab80c2;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        transition: all 0.4s ease 0s;
+    }
+    
+    a:active {
+        color: pink;
+    }
+    
+    .nav-bar-title {
+        font-size: 25px;
+        margin-left: 15px;
+        ;
+        color: white;
+        font-weight: bolder;
+    }
+    
+    .nav-bar-username {
+        display: flex;
+        align-items: row;
+    }
+    
+    .nav-bar-search {
+        margin-top: 15px;
+    }
+    
+    .nav-bar-other {
+        margin-right: 30px;
+        margin-left: 20vw;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 30vw;
+    }
+    
+    .nav-bar-userpic-pic {
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 30px;
+    }
+    
+    .nav-bar-test-premium {
+        display: flex;
+        flex-shrink: 2;
+    }
+    
+    .nav-bar-placeholder {
+        height: 40px;
+        width: 300px;
+        border: 1px solid #707070;
+        border-radius: 3px;
+        background: #ffffff !important;
+        outline: none;
+        color: #cccccc;
+        font-size: 15px;
+        font-family: "Segoe UI", serif;
+    }
+    
+    .nav-bar-placeholder-button {
+        display: flex;
+        background-color: #7118a1;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    
+    .nav-bar-dropdown-button {
+        font-size: 15px;
+        background-color: rgba(75, 39, 88, 0.7);
+        color: white;
+        border: 2px solid white;
+        -webkit-transition-duration: 0.4s;
+        transition-duration: 0.4s;
+    }
+    
+    .nav-bar-dropdown-button:hover {
+        color: #ab80c2;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .nav-bar-test-premium {
+        border: 2px solid white;
+        flex-shrink: 0;
+    }
+    
+    .nav-bar-test {
+        flex-shrink: 0;
+    }
+    
+    .dropdown-menu {
+        background-color: rgba(75, 39, 88, 0.7);
+    }
+    
+    .home-container {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 100vw;
+        display: flex;
+        flex: 1 0 auto;
+        justify-content: center;
+        align-items: stretch;
+    }
+    
+    .home-list {
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 50vw;
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+    
+    .home-list-header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        margin-top: 10px;
+    }
+    
+    .home-list-text {
+        display: flex;
+        margin-right: 20px;
+        margin-left: 20px;
+        justify-content: center;
+    }
+    
+    .home-list-button {
+        font-size: 30px;
+        background-color: rgba(75, 39, 88, 0.7);
+        color: white;
+        border: 2px solid white;
+        -webkit-transition-duration: 0.4s;
+    }
+    
+    .home-list-button:hover {
+        color: #ab80c2;
+        box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    }
+    
+    .home-list-button-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+        margin-top: 40px;
+    }
+    
+    .home-footer {
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+        flex-basis: 10%;
+        background-color: rgba(75, 39, 88, 0.8);
+    }
+    
+    .home-footer-item {
+        margin-right: 15px;
+        margin-left: 15px;
+    }

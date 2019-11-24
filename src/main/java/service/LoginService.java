@@ -17,6 +17,7 @@ public class LoginService {
             HttpSession session = request.getSession();
             session.setAttribute("user", user.getId());
             session.setAttribute("role", user.getRole());
+            session.setAttribute("name", user.getFirstName());
             String[] remembered = request.getParameterValues("remember");
             if (remembered != null && remembered[0].equals("on")) {
                 CookieService cookieService = new CookieService(request, response);

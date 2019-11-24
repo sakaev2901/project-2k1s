@@ -28,7 +28,7 @@
     </style>
 </head>
 <body>
-    <form action="/project_2k1s_war_exploded/dictionary/test/${id}">
+    <form action="test/${id}">
         <input type="submit" value="Пройти тест">
     </form>
     <table>

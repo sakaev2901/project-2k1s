@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         if (userId == null) {
             writer.write("Wrong login or password");
         } else if(role.equals("user")){
-            resp.sendRedirect("profile");
+            resp.sendRedirect("main");
         } else {
             resp.sendRedirect("adminPanel");
         }

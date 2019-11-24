@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "MainServlet", urlPatterns = "/main")
+@WebServlet(name = "MainServlet", urlPatterns = "/mai")
 @MultipartConfig(fileSizeThreshold=1024*1024*10, 	// 10 MB
         maxFileSize=1024*1024*50,      	// 50 MB
         maxRequestSize=1024*1024*100)
