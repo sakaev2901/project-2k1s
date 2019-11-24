@@ -37,11 +37,13 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = req.getSession();
         loginService.checkLoginAndPassword(req, resp);
         Integer userId = (Integer) session.getAttribute("user");
+
         Writer writer = resp.getWriter();
         if (userId == null) {
             writer.write("Wrong login or password");
         } else {
             resp.sendRedirect("profile");
+            resp.sendRedirect("adminPanel");
         }
         writer.close();
 

@@ -7,6 +7,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
 import org.apache.commons.io.FilenameUtils;
 import service.DictionaryService;
 
@@ -22,24 +23,30 @@ import java.util.List;
 public class ParsePrimeDictionaryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         req.getRequestDispatcher("/parsePrimeDictionary.ftl").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         DictionaryService dictionaryService = new DictionaryService();
         List<FileItem> items;
         String name = null;
         InputStream inputStream = null;
         try {
-            items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            diskFileItemFactory.setDefaultCharset("UTF-8");
+            ServletFileUpload servletFileUpload = new ServletFileUpload(diskFileItemFactory);
+            servletFileUpload.setHeaderEncoding("UTF-8");
+            items = servletFileUpload.parseRequest(req);
             for (FileItem item:
                     items) {
                 if (item.isFormField()) {
                     String fieldName = item.getFieldName();
                     String fieldValue = item.getString();
                     if(fieldName.equals("name")) {
-                        name = fieldValue;
+                        name = Streams.asString(item.getInputStream(), "UTF-8");
                     }
                 } else {
                     // Process form file field (input type="file").

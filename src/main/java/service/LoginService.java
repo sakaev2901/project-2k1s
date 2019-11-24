@@ -12,9 +12,11 @@ public class LoginService {
 
     public boolean checkLoginAndPassword(HttpServletRequest request, HttpServletResponse response) {
         UserDaoImpl userDao = new UserDaoImpl();
-        Integer userId = userDao.findByPasswordAndLogin(request.getParameter("login"), request.getParameter("password"));
-        if (userId != null) {
-            request.getSession().setAttribute("user", userId);
+        User user = userDao.findByPasswordAndLogin(request.getParameter("login"), request.getParameter("password"));
+        if (user != null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user.getId());
+            session.setAttribute("role", user.getRole());
             String[] remembered = request.getParameterValues("remember");
             if (remembered != null && remembered[0].equals("on")) {
                 CookieService cookieService = new CookieService(request, response);

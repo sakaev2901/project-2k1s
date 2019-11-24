@@ -16,6 +16,8 @@ import java.io.IOException;
 public class CreatePrimeDictionaryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html; charset=UTF-8");
+        req.setCharacterEncoding("UTF-8");
         HttpSession session = req.getSession();
         Dictionary dictionary = (Dictionary) session.getAttribute("dictionary");
         req.setAttribute("dictionary", dictionary.getDictionary());
@@ -24,6 +26,7 @@ public class CreatePrimeDictionaryServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         PrimeDictionaryService primeDictionaryService = new PrimeDictionaryService();
         primeDictionaryService.parsePrimeDictionary(req);
     }

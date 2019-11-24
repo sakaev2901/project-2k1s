@@ -13,8 +13,18 @@ public class User {
     public String login;
     private String birthday;
     private List<Dictionary> dictionaryList;
+    private String role;
+
 
     public User() {
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Boolean getPremium() {

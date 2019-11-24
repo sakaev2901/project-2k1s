@@ -8,6 +8,7 @@ import com.google.cloud.storage.StorageOptions;
 import com.google.cloud.texttospeech.v1.*;
 import com.google.common.collect.Lists;
 import com.google.protobuf.ByteString;
+import dao.PrimeWordDaoImpl;
 import dao.WordDaoImpl;
 import models.Dictionary;
 import models.Word;
@@ -37,7 +38,9 @@ public class PrimeDictionaryService {
         String photoName = "";
         String voice_name = "";
         try {
-            items = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(req);
+            DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+            diskFileItemFactory.setDefaultCharset("UTF-8");
+            items = new ServletFileUpload(diskFileItemFactory).parseRequest(req);
             for (FileItem item:
                     items) {
                 if (item.isFormField()) {
@@ -70,8 +73,8 @@ public class PrimeDictionaryService {
         Word word = new Word();
         word.setWord(wordText);
         word.setTranslation(translation);
-        WordDaoImpl wordDao = new WordDaoImpl();
-        this.wordId = wordDao.savePrime(word, extension,dictionary.getId());
+        PrimeWordDaoImpl primeWordDao = new PrimeWordDaoImpl();
+        this.wordId = primeWordDao.save(word, extension,dictionary.getId());
         saveImage(extension);
         saveSpeech(wordText);
 
