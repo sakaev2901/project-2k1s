@@ -16,7 +16,7 @@ public class LoginService {
         if (userId != null) {
             request.getSession().setAttribute("user", userId);
             String[] remembered = request.getParameterValues("remember");
-            if (remembered != null && remembered[0].equals("true")) {
+            if (remembered != null && remembered[0].equals("on")) {
                 CookieService cookieService = new CookieService(request, response);
                 cookieService.sendCookieToDatabase();
             }

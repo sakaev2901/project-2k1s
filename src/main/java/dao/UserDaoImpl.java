@@ -24,7 +24,7 @@ public class UserDaoImpl implements UserDao {
         PreparedStatement statement = null;
         try {
             connection = CONFIG.getConnection();
-            statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+                statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, model.getLogin());
             statement.setString(2, model.getFirstName());
             statement.setString(3, model.getSurName());

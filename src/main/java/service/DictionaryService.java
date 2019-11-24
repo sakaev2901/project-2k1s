@@ -17,7 +17,7 @@ public class DictionaryService {
 
     public Dictionary dictionary;
 
-    public Dictionary parseFile(String separator, InputStream inputStream, String name, Integer userId) {
+    public Dictionary parseFile(String separator, InputStream inputStream, String name) {
         try(BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 
             String line;
@@ -31,8 +31,6 @@ public class DictionaryService {
                 dictionary.addWord(new Word(word, translation));
             }
             //TODO: fix this shit_1
-            DictionaryDaoImpl dictionaryDao = new DictionaryDaoImpl();
-            dictionaryDao.save(this.dictionary, userId);
             return this.dictionary;
         } catch (IOException e) {
             throw new RuntimeException(e);

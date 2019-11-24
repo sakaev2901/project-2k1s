@@ -6,6 +6,19 @@ public class Dictionary {
     String name;
     List<Word> dictionary;
     int id;
+    boolean isPrime;
+
+    public void setDictionary(List<Word> dictionary) {
+        this.dictionary = dictionary;
+    }
+
+    public boolean isPrime() {
+        return isPrime;
+    }
+
+    public void setPrime(boolean prime) {
+        isPrime = prime;
+    }
 
     public int getId() {
         return id;

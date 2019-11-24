@@ -5,10 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Login</title>
-    <#include "registration_style.css">
-    <link rel="stylesheet" href="css/registration_style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="resources\css\registration_style.css" type="text/css">
 </head>
 
 <#--<body>-->
@@ -61,11 +60,13 @@
                 <input id='login' type="text" name="login" placeholder="Логин" required />
 
                 <input id="psw" type="password" name="password" placeholder="Пароль" required />
-
+                <div>
+                    <#--<label><input type="checkbox" name="remember">   Запомнить меня</label>-->
+                </div>
                 <button id="reset" type="reset">Сбросить</button>
                 <button id="submit" type="submit">Войти</button>
 
-                <div class="redirect-login col-12 align-self-start">Нет аккаунта? <div><a href="registrationPage.ftl">Зарегистрироваться</a></div></div>
+                <div class="redirect-login col-12 align-self-start">Нет аккаунта? <div><a href="reg">Зарегистрироваться</a></div></div>
             </div>
             </fieldset>
         </form>

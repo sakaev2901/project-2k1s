@@ -13,7 +13,7 @@ public class WordDaoImpl implements WordDao {
     public static final ConnectionConfig CONFIG = new ConnectionConfig();
 
     public static final String INSERT = "INSERT INTO public.word (word, translation, correct_answers, photo) VALUES(?, ?, ?, ?);";
-
+    public static final String SAVE_PRIME = "INSERT INTO public.word (word, translation) values (?, ?)";
     public static final String FIND = "SELECT * FROM word WHERE \"id\"=?";
     public final String UPDATE_PROGRESS = "UPDATE word SET \"correct_answers\" = ? WHERE \"id\"=?";
 
@@ -45,7 +45,6 @@ public class WordDaoImpl implements WordDao {
             PreparedStatement statementLinking = connection.prepareStatement(INSERT_LINKING);
             statementLinking.setInt(1, id);
             statementLinking.setInt(2, model.getId());
-            statement.setInt(3, 0);
             statementLinking.executeUpdate();
 
             return result;
@@ -124,6 +123,42 @@ public class WordDaoImpl implements WordDao {
             CONFIG.close(connection);
         }
 
+
+    }
+
+    public Integer savePrime(Word model, String imageExtention, Integer id) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try {
+            connection = CONFIG.getConnection();
+            statement = connection.prepareStatement(SAVE_PRIME,  Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, model.getWord());
+            statement.setString(2, model.getTranslation());
+            statement.executeUpdate();
+            ResultSet set = statement.getGeneratedKeys();
+            Integer wordId = null;
+            if(set.next()) {
+                wordId  = set.getInt(1);
+            }
+            model.setId(wordId);
+            String pathImage = "/images/" + wordId + "." +imageExtention;
+            String pathSpeech = "/speech/" + wordId + ".mp3";
+            statement = connection.prepareStatement(UPDATE_PATHS);
+            statement.setString(1, pathImage);
+            statement.setString(2, pathSpeech);
+            statement.setInt(3, wordId);
+            statement.executeUpdate();PreparedStatement statementLinking = connection.prepareStatement(INSERT_LINKING);
+            statementLinking.setInt(1, id);
+            statementLinking.setInt(2, model.getId());
+            statementLinking.executeUpdate();
+
+            return wordId;
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        } finally {
+            CONFIG.close(statement);
+            CONFIG.close(connection);
+        }
 
     }
 }

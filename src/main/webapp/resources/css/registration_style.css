@@ -1,9 +1,9 @@
 body {
-    background: no-repeat url("../resources/images/watercolors-413270.jpg");
+    background: no-repeat url("../images/watercolors-413270.jpg");
     background-size: 100%;
     font-family: "Helvetica Neue", Helvetica, Arial, serif;
     padding-top: 50px;
-    padding-bottom: 300px;
+    padding-bottom: 70px;
 }
 
 html {
@@ -218,3 +218,4 @@ a {
     text-decoration: none;
     color: rgba(75, 39, 88, 0.7);
 }
+
